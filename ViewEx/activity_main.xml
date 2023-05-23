@@ -1,69 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="100dp"
-    android:orientation="vertical"> <!--가로/세로방향으로 컴포넌트 배치-->
-    <!--  match_parent: 부모 view와 크기 맞춤 / wrap_content : 내용을 감싸는 크기  -->
+    android:orientation="vertical">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:padding="30dp"
-        android:layout_margin="10dp"/>
-<!--    padding : 안쪽 여백  /  layout_margin : 바깥쪽 여백-->
-    <!--    text="" : jframe의 setText() 역할   -->
-    <!--
-    < /> : 여는태그와 닫는태그를 한번에 쓰는 태그 ex) html의 <img> 태그
-    -->
+        android:layout_margin="20dp"
+        android:text="버튼1"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="10dp"
+        android:backgroundTint="#228811"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#802988"
-
-        android:text="Hello Android!"
-        android:clickable="false"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#802988"
-        android:visibility="invisible"
-        android:text="Hello World!" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#802988"
-        android:visibility="gone"
-        android:text="Hello World!" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:text="Hello World!"
-        android:enabled="false"
-        android:rotation="20"/>
-
-<!--    TextView : JLabel 역할-->
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="text view" />
+        android:text="이건 텍스트뷰입니다."
+        android:padding="20dp"/>
 
-<!--    EditText : JTextField 또는 input type="text" 역할-->
-<!--    hint : HTML의 placeholder="id"의 역할  -->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:hint="이름을 입력하세요"/>
+        android:text="이건 에디트텍스트입니다"
+        android:background="#001177"
+        android:textColor="#ffffff"
+        android:layout_margin="20dp"
+        android:textSize="13dp"
+        android:padding="2dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="버튼2"
+        android:backgroundTint="#EBF5FB"
+        android:textColor="#AEB6BF"
+        android:layout_margin="20dp"/>
+
 
 </LinearLayout>
