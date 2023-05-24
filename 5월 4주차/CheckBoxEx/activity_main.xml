@@ -27,4 +27,37 @@
         android:textSize="20sp"
         android:text="윈도우폰" />
 
+    <Switch
+        android:id="@+id/swAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm"
+        android:checked="true" />
+
+    <ToggleButton
+        android:id="@+id/tbSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="save"
+        android:textOff="not save"
+        android:checked="true"/>
+
+    <RadioGroup
+        android:id="@+id/rGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rdMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="male"
+            android:checked="true" />
+        <RadioButton
+            android:id="@+id/rdFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="female"/>
+    </RadioGroup>
+
+
 </LinearLayout>
