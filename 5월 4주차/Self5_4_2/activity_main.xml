@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="000-000-0000"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/view"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="입력"
+        android:backgroundTint="#CDDC39"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/btnCancel"
+        android:layout_below="@+id/text"/>
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소"
+        android:backgroundTint="#CDDC39"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/text"/>
+
+</RelativeLayout>
