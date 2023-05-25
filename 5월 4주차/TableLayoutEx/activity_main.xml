@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="10dp"
+    android:stretchColumns="*"> <!--공간이 남을 때 모든 컬럼이 균등하게 공간 차지-->
+
+    <TableRow>
+        <Button
+            android:text="1"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:text="2"
+            android:layout_marginRight="10dp"
+            android:layout_span="2"/>
+        <Button
+            android:text="3"/>
+
+    </TableRow>
+    <TableRow>
+        <Button
+            android:text="4"
+            android:layout_marginRight="10dp"
+            android:layout_column="1"/>
+        <Button
+            android:text="5"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:text="6"/>
+
+    </TableRow>
+
+</TableLayout>
