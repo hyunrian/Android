@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             num1 = Double.valueOf(str1);
             num2 = Double.valueOf(str2);
         } catch (Exception e) {
-            Toast.makeText(this, "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "정확한 값을 입력하세요.", Toast.LENGTH_SHORT).show();
             return;
         }
 
