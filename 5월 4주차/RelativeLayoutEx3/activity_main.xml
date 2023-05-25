@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/base1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기준1"
+        android:backgroundTint="#AEACAC"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+    <Button
+        android:id="@+id/base2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기준2"
+        android:backgroundTint="#AEACAC"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1번"
+        android:backgroundTint="#AEACAC"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/base1"
+        android:layout_above="@+id/base2"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2번"
+        android:backgroundTint="#AEACAC"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/base1"/>
+
+
+
+</RelativeLayout>
