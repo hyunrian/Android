@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="50"/>
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="30"
+        android:thumb="@mipmap/ic_launcher"/> <!--커서(?) 모양 변경-->
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:rating="2"/> <!-- 사용자와 상호작용. 밑에 두개는 표시용-->
+    <RatingBar
+        android:id="@+id/ratingBarIndi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:ratingBarStyleIndicator"
+        android:rating="5"/>
+    <RatingBar
+        android:id="@+id/ratingBarSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:ratingBarStyleSmall"/>
+
+</LinearLayout>
