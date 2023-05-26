@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnBase"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:text="기준 위젯"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1번"
+        android:layout_alignTop="@+id/btnBase"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2번"
+        android:layout_alignBottom="@+id/btnBase"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3번"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btnBase"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4번"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnBase"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5번"
+        android:layout_alignEnd="@+id/btnBase"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6번"
+        android:layout_above="@+id/btnBase"
+        android:layout_alignParentRight="true"
+        android:backgroundTint="#BBEA84"
+        android:textColor="@color/black"/>
+
+</RelativeLayout>
