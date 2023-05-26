@@ -51,19 +51,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onLongClick(View view) {
                 chronometer.stop();
                 layout.setVisibility(View.INVISIBLE);
-                txtResult.setText(setDate() + setTime() + "예약됨");
+                txtResult.setText(setDateAndTime());
                 rdDate.setChecked(false);
                 rdTime.setChecked(false);
                 chronometer.setTextColor(Color.rgb(31, 97, 141 ));
                 return false;
-            }
-        });
-        datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
-                MainActivity.this.year = year;
-                MainActivity.this.month = month + 1;
-                MainActivity.this.day = day;
             }
         });
     }
@@ -83,14 +75,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return result;
     }
 
-    private String setDate() {
-        return make2digits(year) + "년 " + make2digits(month) + "월 " + make2digits(day) + "일 ";
-    }
-
-    private String setTime() {
+    private String setDateAndTime() {
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int day = datePicker.getDayOfMonth();
         int hour = timePicker.getHour();
         int min = timePicker.getMinute();
-        return make2digits(hour) + "시 " + make2digits(min) + "분 ";
+        return make2digits(year) + "년 " + make2digits(month) + "월 "
+                + make2digits(day) + "일 " + make2digits(hour) + "시 "
+                + make2digits(min) + "분 예약됨";
     }
 
     @Override
