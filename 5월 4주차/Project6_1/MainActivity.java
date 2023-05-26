@@ -1,16 +1,14 @@
-package com.kh.project6_1;
+package com.kh.self6_1;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.Chronometer;
-import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -20,92 +18,86 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Chronometer chronometer;
-    Button btnStart, btnFinish;
     RadioButton rdDate, rdTime;
-    CalendarView calendarView;
+    DatePicker datePicker;
     TimePicker timePicker;
     TextView txtResult;
+    LinearLayout layout;
     int year, month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setTitle("시간 예약");
         setUI();
         setListener();
-        setInitDate(); // 날짜 변경이 없으면 오늘 날짜로 설정
+        initDate();
     }
 
-    private void setInitDate() {
+    private void initDate() {
         Calendar cal = Calendar.getInstance();
-        this.year = cal.get(Calendar.YEAR);
-        this.month = cal.get(Calendar.MONTH) + 1;
-        this.day = cal.get(Calendar.DAY_OF_MONTH);
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH) + 1;
+        day = cal.get(Calendar.DAY_OF_MONTH);
     }
 
     private void setListener() {
-        btnStart.setOnClickListener(this);
-        btnFinish.setOnClickListener(this);
         rdDate.setOnClickListener(this);
         rdTime.setOnClickListener(this);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        chronometer.setOnClickListener(this);
+        txtResult.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView,
-                                            int year, int month, int day) {
-                MainActivity.this.year = year;
-                MainActivity.this.month = month + 1;
-                MainActivity.this.day = day;
+            public boolean onLongClick(View view) {
+                chronometer.stop();
+                layout.setVisibility(View.INVISIBLE);
+                txtResult.setText(setDateAndTime());
+                rdDate.setChecked(false);
+                rdTime.setChecked(false);
+                chronometer.setTextColor(Color.rgb(31, 97, 141 ));
+                return false;
             }
         });
     }
 
     private void setUI() {
         chronometer = findViewById(R.id.chronometer);
-        btnStart = findViewById(R.id.btnStart);
-        btnFinish = findViewById(R.id.btnFinish);
         rdDate = findViewById(R.id.rdDate);
         rdTime = findViewById(R.id.rdTime);
-        calendarView = findViewById(R.id.calendarView);
+        datePicker = findViewById(R.id.datePicker);
         timePicker = findViewById(R.id.timePicker);
         txtResult = findViewById(R.id.txtResult);
+        layout = findViewById(R.id.layout);
     }
 
-    private String make2digits(int value) {
-        if (value < 10) return "0" + value;
-        else return value + "";
-    }
-
-    private String selectedDate() {
-        String result = make2digits(year) + "년 "
-                + make2digits(month) + "월 " + make2digits(day) + "일 ";
+    private String make2digits(int num) {
+        String result = num < 10 ? "0" + num : num + "";
         return result;
     }
 
-    private String selectedTime() {
+    private String setDateAndTime() {
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int day = datePicker.getDayOfMonth();
         int hour = timePicker.getHour();
         int min = timePicker.getMinute();
-        String result = make2digits(hour) + "시 " + make2digits(min) + "분 ";
-        return result;
+        return make2digits(year) + "년 " + make2digits(month) + "월 "
+                + make2digits(day) + "일 " + make2digits(hour) + "시 "
+                + make2digits(min) + "분 예약됨";
     }
 
     @Override
     public void onClick(View view) {
-        if (view == btnStart) {
-            chronometer.setBase(SystemClock.elapsedRealtime()); // 실제 흐른 시간값으로 설정
+        if (view == chronometer) {
+            chronometer.setBase(SystemClock.elapsedRealtime());
             chronometer.start();
-            chronometer.setTextColor(Color.RED);
-        } else if (view == btnFinish) {
-            chronometer.stop();
-            calendarView.getDate();
-            chronometer.setTextColor(Color.BLUE);
-            txtResult.setText(selectedDate() + selectedTime() + "예약됨");
+            layout.setVisibility(View.VISIBLE);
+            chronometer.setTextColor(Color.rgb(192, 57, 43));
         } else if (view == rdDate) {
-            calendarView.setVisibility(View.VISIBLE);
+            datePicker.setVisibility(View.VISIBLE);
             timePicker.setVisibility(View.INVISIBLE);
         } else if (view == rdTime) {
-            calendarView.setVisibility(View.INVISIBLE);
+            datePicker.setVisibility(View.INVISIBLE);
             timePicker.setVisibility(View.VISIBLE);
         }
     }
