@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnRed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Red"
+            android:layout_margin="5dp"
+            android:backgroundTint="#A6A6A6"/>
+        <Button
+            android:id="@+id/btnGreen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Green"
+            android:layout_margin="5dp"
+            android:backgroundTint="#A6A6A6"/>
+        <Button
+            android:id="@+id/btnBlue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Blue"
+            android:layout_margin="5dp"
+            android:backgroundTint="#A6A6A6"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/red"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#DF1203"
+            android:text="button"
+            android:layout_margin="5dp"/>
+        <Button
+            android:id="@+id/green"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#089741"
+            android:text="button"
+            android:layout_margin="5dp"/>
+        <Button
+            android:id="@+id/blue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#2E3F9E"
+            android:text="button"
+            android:layout_margin="5dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>
