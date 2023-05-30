@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     public void showToast(View v) {
         int width = baseLayout.getWidth();
         int height = baseLayout.getHeight();
-        Log.d("mytag", "width:" + (int)(Math.random() * width) + ", height:" + (int)(Math.random() * height));
 
         View toastView = View.inflate(this, R.layout.view_toast, null);
 
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         toast.setGravity(Gravity.LEFT|Gravity.TOP,
                 (int)(Math.random() * width),
                 (int)(Math.random() * height));
+
         toast.show();
     }
 }
