@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="각도 입력"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_marginRight="10dp"/>
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView"
+        android:hint="이미지를 회전시킬 각도를 입력하세요."
+        android:textColorHint="#D5D4D4"/>
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="숫자를 입력하세요!"
+        android:layout_below="@+id/editText"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="#C60D0D"/>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cat"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="초기화"
+        android:backgroundTint="#D3B1FD"
+        android:textColor="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>
+
+</RelativeLayout>
