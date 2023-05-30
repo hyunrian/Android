@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/btnBackground"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="배경색 변경"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/purple_700"/>
+    <Button
+        android:id="@+id/btnButton"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="버튼 변경"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/purple_700"
+        android:layout_marginBottom="10dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/red"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#C51818"/>
+        <LinearLayout
+            android:id="@+id/green"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#4CAF50"/>
+        <LinearLayout
+            android:id="@+id/blue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#3F51B5"/>
+    </FrameLayout>
+
+</LinearLayout>
