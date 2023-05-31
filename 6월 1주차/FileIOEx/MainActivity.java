@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view == btnWrite) {
             try {
                 FileOutputStream out = openFileOutput("file.txt", MODE_PRIVATE);
+                // MODE_PRIVATE : 새로 쓰기 / MODE_APPEND : 이어 쓰기
                 String str = "Hello\n헬로";
                 byte[] bytes = str.getBytes();
                 out.write(bytes);
