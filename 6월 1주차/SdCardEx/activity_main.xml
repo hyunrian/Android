@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <Button
+        android:id="@+id/btnRead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="외장 메모리 읽기"
+        android:backgroundTint="@color/teal_700"/>
+    <Button
+        android:id="@+id/btnMake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="디렉토리 생성"
+        android:backgroundTint="@color/teal_700"/>
+    <Button
+        android:id="@+id/btnRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="디렉토리 제거"
+        android:backgroundTint="@color/teal_700"/>
+    <Button
+        android:id="@+id/btnFileList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="디렉토리 목록"
+        android:backgroundTint="@color/teal_700"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDEDED"
+        android:padding="10dp"
+        android:gravity="top" />
+
+</LinearLayout>
