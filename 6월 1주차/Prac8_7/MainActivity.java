@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,25 +42,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setFileList(FILEPATH);
         String imgPath = FILEPATH + "/" + list.get(index).getName();
-        pictureView.setImagePath(imgPath);
+        pictureView.setImagePath(imgPath); // 프로그램 실행 시 최초로 뜰 이미지 세팅
         orderCheck.setText("1/" + list.size());
-
-//        getImageSize(list.get(0));
     }
-
-//    private void getImageSize(File file) {
-//        file.
-//    }
 
     private void setFileList(String path) {
         File file = new File(path);
-        File[] files = file.listFiles();
+        File[] files = file.listFiles(); // 해당 경로의 파일 리스트 얻기
         for (File aFile : files) {
             if (isImage(aFile)) {
-                list.add(aFile);
-                Log.d("mytag", list.toString());
+                list.add(aFile); // 왜 10번 파일부터 들어갈까?
+//                Log.d("mytag", list.toString());
             }
         }
+        Collections.sort(list); // 오름차순으로 정렬
     }
 
     private boolean isImage(File file) {
@@ -90,8 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             imgPath = list.get(++index).getAbsolutePath();
         }
+        Log.d("mytag", imgPath);
         orderCheck.setText((index + 1) + "/" + list.size());
         pictureView.setImagePath(imgPath);
-        pictureView.invalidate();
+        pictureView.invalidate(); // 다시그리기
     }
 }
