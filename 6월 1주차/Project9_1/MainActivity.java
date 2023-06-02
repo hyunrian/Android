@@ -16,10 +16,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     int startX, startY, endX, endY;
-    MyDrawView drawView;
-    final int LINE = 1;
-    final int CIRCLE = 2;
-    int curMode = LINE;
+    MyDrawView drawView; // enum 사용
+    ShapeType curMode = ShapeType.LINE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         int id = item.getItemId();
         switch (id) {
             case R.id.itemLine:
-                curMode = LINE;
+                curMode = ShapeType.LINE;
                 break;
             case R.id.itemCircle:
-                curMode = CIRCLE;
+                curMode = ShapeType.CIRCLE;
                 break;
         }
         return false;
@@ -80,9 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             Paint paint = new Paint();
-            if (curMode == LINE) {
+            if (curMode == ShapeType.LINE) {
                 canvas.drawLine(startX, startY, endX, endY, paint);
-            } else if (curMode == CIRCLE) {
+            } else if (curMode == ShapeType.CIRCLE) {
                 // 반지름 구하기 (a^2 + b^2 = c^2)
                 paint.setStyle(Paint.Style.STROKE);
                 int radius = (int)(Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
