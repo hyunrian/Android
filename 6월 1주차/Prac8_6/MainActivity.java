@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                makeDirectory("mydiary"); // OnCreate가 끝난 이후에 폴더 생성이 가능(권한문제로 인함)
+
                 int year = datePicker.getYear();
                 int month = datePicker.getMonth();
                 int day = datePicker.getDayOfMonth();
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
                 try {
-                    File file = new File(("/sdcard/" + filename));
+                    File file = new File(("/sdcard/mydiary/" + filename));
                     FileOutputStream fos = new FileOutputStream(file);
                     String str = text.getText().toString();
                     fos.write(str.getBytes());
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 //                    button.setText("save");
 //                } // 실행 제대로 안됨
                     try {
-                        File file = new File(("/sdcard/"+filename));
+                        File file = new File(("/sdcard/mydiary/"+filename));
                         FileInputStream fis = new FileInputStream(file);
                         byte[] bytes = new byte[300];
                         fis.read(bytes);
@@ -111,9 +115,14 @@ public class MainActivity extends AppCompatActivity {
                         button.setText("save");
                         text.setText("");
                     }
-
+                    // 처음 로딩했을 때 등록된 내용 읽어오는 기능 추가 필요
             }
         });
 
     } //setListener()
+
+    private void makeDirectory(String dirName) {
+        File f = new File("/sdcard/" + dirName);
+        if (!f.exists()) f.mkdir();
+    }
 }
