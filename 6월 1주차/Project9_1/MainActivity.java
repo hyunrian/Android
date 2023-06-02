@@ -1,10 +1,14 @@
 package com.kh.project9_1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +17,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     int startX, startY, endX, endY;
     MyDrawView drawView; // enum 사용
     ShapeType curMode = ShapeType.LINE;
+    ColorType curColor = ColorType.RED;
+    int userR, userG, userB;
+    ArrayList<ShapeDrawing> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +55,44 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             case R.id.itemCircle:
                 curMode = ShapeType.CIRCLE;
                 break;
+            case R.id.itemRect:
+                curMode = ShapeType.RECT;
+                break;
+            case R.id.itemRed:
+                curColor = ColorType.RED;
+                Log.d("mytag","red");
+                Log.d("mytag", curColor+"");
+                break;
+            case R.id.itemGreen:
+                curColor = ColorType.GREEN;
+                Log.d("mytag", curColor+"");
+                break;
+            case R.id.itemBlue:
+                curColor = ColorType.BLUE;
+                Log.d("mytag", curColor+"");
+                break;
+            case R.id.itemUserVal:
+                curColor = ColorType.USERVAL;
+                View dialogView = View.inflate(MainActivity.this, R.layout.dialog, null);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                dialog.setTitle("컬러 값을 입력하세요");
+                dialog.setView(dialogView);
+                EditText txtR = dialogView.findViewById(R.id.userR);
+                EditText txtG = dialogView.findViewById(R.id.userG);
+                EditText txtB = dialogView.findViewById(R.id.userB);
+                dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        userR = Integer.valueOf(txtR.getText().toString());
+                        userG = Integer.valueOf(txtG.getText().toString());
+                        userB = Integer.valueOf(txtB.getText().toString());
+                    }
+                });
+                dialog.setNegativeButton("취소", null);
+                dialog.show();
+                break;
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -70,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     private class MyDrawView extends View {
+//        ColorType prevColor;
+
         public MyDrawView(Context context) {
             super(context);
         }
@@ -77,15 +125,77 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
+            if (list.size() > 0) {
+                for (int i = 0; i < list.size(); i++) {
+                    ShapeDrawing sd = list.get(i);
+                    if (sd.color == ColorType.RED) {
+
+                    } else if (sd.color == ColorType.GREEN) {
+
+                    } else if (sd.color == ColorType.BLUE) {
+
+                    }
+
+                    if (sd.shape == ShapeType.LINE) {
+
+                    } else if (sd.shape == ShapeType.CIRCLE) {
+
+                    } else if (sd.shape == ShapeType.RECT) {
+
+                    }
+                }
+            }
             Paint paint = new Paint();
+            setUserColor(curColor, paint);
             if (curMode == ShapeType.LINE) {
                 canvas.drawLine(startX, startY, endX, endY, paint);
+                list.add(new ShapeDrawing(startX, startY, endX, endY, paint, curMode, curColor));
             } else if (curMode == ShapeType.CIRCLE) {
                 // 반지름 구하기 (a^2 + b^2 = c^2)
                 paint.setStyle(Paint.Style.STROKE);
                 int radius = (int)(Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
                 canvas.drawCircle(startX, startY, radius, paint);
+                list.add(new ShapeDrawing(startX, startY, radius, paint, curMode, curColor));
+            } else if (curMode == ShapeType.RECT) {
+                paint.setStyle(Paint.Style.STROKE);
+                canvas.drawRect(startX, startY, endX, endY, paint);
+                list.add(new ShapeDrawing(startX, startY, endX, endY, paint, curMode, curColor));
             }
+        }
+
+        private void setUserColor(ColorType curColor, Paint paint) {
+            if (curColor == ColorType.RED) {
+                paint.setColor(Color.RED);
+            } else if (curColor == ColorType.GREEN) {
+                paint.setColor(Color.GREEN);
+            } else if (curColor == ColorType.BLUE) {
+                paint.setColor(Color.BLUE);
+            } else if (curColor == ColorType.USERVAL) {
+                paint.setColor(Color.rgb(userR, userG, userB));
+            }
+        }
+
+    }//MyDrawView
+
+    private class ShapeDrawing {
+        int startX, startY, endX, endY, radius;
+        ShapeType shape;
+        ColorType color;
+        Paint paint;
+        ShapeDrawing(int startX, int startY, int endX, int endY, Paint paint, ShapeType shape, ColorType color) {
+            this.startX = startX;
+            this.startY = startY;
+            this.endX = endX;
+            this.endY = endY;
+            this.paint = paint;
+            this.shape = shape;
+        }
+        ShapeDrawing(int startX, int startY, int radius, Paint paint, ShapeType shape, ColorType color) {
+            this.startX = startX;
+            this.startY = startY;
+            this.radius = radius;
+            this.paint = paint;
+            this.shape = shape;
         }
     }
 }
