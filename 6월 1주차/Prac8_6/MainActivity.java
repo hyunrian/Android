@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
 
         setListener();
+        initData();
+    }
+
+    private void initData() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String filename = year + "_" + month + "_" + day + ".txt";
+        getData(filename);
     }
 
     private void setListener() {
@@ -57,26 +69,15 @@ public class MainActivity extends AppCompatActivity {
 
                 String filename = year + "_" + (month + 1) + "_" + day + ".txt";
 
-
                 button.setText("save");
 
-//                try {
-//                    FileOutputStream fos = openFileOutput(filename, MODE_PRIVATE);
-//                    String str = text.getText().toString();
-//                    byte[] bytes = str.getBytes();
-//                    fos.write(bytes);
-//                    Toast.makeText(MainActivity.this, "저장 완료", Toast.LENGTH_SHORT).show();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-                try {
-                    File file = new File(("/sdcard/mydiary/" + filename));
-                    FileOutputStream fos = new FileOutputStream(file);
+                try { // 문자 데이터이므로 FileWriter/Reader 사용
+                    FileWriter fw = new FileWriter("/sdcard/mydiary/" + filename);
+                    BufferedWriter bw = new BufferedWriter(fw); // Buffer : 성능 업그레이드
                     String str = text.getText().toString();
-                    fos.write(str.getBytes());
-                    Log.d("mytag",text.getText().toString());
+                    bw.write(str);
                     Toast.makeText(MainActivity.this, "저장 완료", Toast.LENGTH_SHORT).show();
-                    fos.close();
+                    bw.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -87,35 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
                 String filename = year + "_" + (month + 1) + "_" + day + ".txt";
-
-//                try {
-//                    FileInputStream fis = openFileInput(filename);
-//                    BufferedInputStream bis = new BufferedInputStream(fis);
-//                    byte[] bytes = new byte[300];
-//                    bis.read(bytes);
-//                    text.setText(new String(bytes));
-//                    bis.close();
-//                    Toast.makeText(MainActivity.this, "로딩 완료", Toast.LENGTH_SHORT).show();
-//                    button.setText("update");
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    button.setText("save");
-//                } // 실행 제대로 안됨
-                    try {
-                        File file = new File(("/sdcard/mydiary/"+filename));
-                        FileInputStream fis = new FileInputStream(file);
-                        byte[] bytes = new byte[300];
-                        fis.read(bytes);
-                        text.setText(new String(bytes));
-                        fis.close();
-                        button.setText("update");
-                        return;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        button.setText("save");
-                        text.setText("");
-                    }
-                    // 처음 로딩했을 때 등록된 내용 읽어오는 기능 추가 필요
+                getData(filename);
             }
         });
 
@@ -124,5 +97,29 @@ public class MainActivity extends AppCompatActivity {
     private void makeDirectory(String dirName) {
         File f = new File("/sdcard/" + dirName);
         if (!f.exists()) f.mkdir();
+    }
+
+    private void getData(String filename) {
+        try {
+            FileReader fr = new FileReader("/sdcard/mydiary/"+filename);
+            BufferedReader br = new BufferedReader(fr);
+//            char[] chars = new char[300];
+//            br.read(chars);
+//            text.setText(String.valueOf(chars)); // 아래 코드와 동일
+            text.setText("");
+            while (true) {
+                String str = "";
+                String line = br.readLine(); // 한 줄씩 읽기
+                if (line == null || line.equals("")) break;
+                text.append(line + "\n");
+            }
+            br.close();
+            button.setText("update");
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+            button.setText("save");
+            text.setText("");
+        }
     }
 }
