@@ -8,6 +8,25 @@
     android:stretchColumns="0"
     android:padding="20dp">
 
+
+    <TableRow>
+        <TextView
+            android:id="@+id/tvTop"
+            android:text="작품명"
+            android:layout_span="2"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"/>
+    </TableRow>
+    <TableRow>
+        <ImageView
+            android:id="@+id/imgTop"
+            android:src="@drawable/pic1"
+            android:layout_span="2"
+            android:layout_marginBottom="30dp"
+            android:layout_height="150dp"/>
+    </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
