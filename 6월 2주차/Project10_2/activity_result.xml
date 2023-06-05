@@ -8,12 +8,11 @@
     android:stretchColumns="0"
     android:padding="20dp">
 
-
     <TableRow>
         <TextView
             android:id="@+id/tvTop"
             android:text="작품명"
-            android:layout_span="2"
+            android:layout_span="3"
             android:gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"/>
@@ -22,7 +21,7 @@
         <ImageView
             android:id="@+id/imgTop"
             android:src="@drawable/pic1"
-            android:layout_span="2"
+            android:layout_span="3"
             android:layout_marginBottom="30dp"
             android:layout_height="150dp"/>
     </TableRow>
@@ -34,11 +33,12 @@
         <TextView
             android:id="@+id/tv1"
             android:text="그림1"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar1"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -47,11 +47,12 @@
         <TextView
             android:id="@+id/tv2"
             android:text="그림2"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar2"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -60,11 +61,12 @@
         <TextView
             android:id="@+id/tv3"
             android:text="그림3"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar3"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -73,11 +75,12 @@
         <TextView
             android:id="@+id/tv4"
             android:text="그림4"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar4"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -86,11 +89,12 @@
         <TextView
             android:id="@+id/tv5"
             android:text="그림5"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar5"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -99,11 +103,12 @@
         <TextView
             android:id="@+id/tv6"
             android:text="그림6"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar6"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -112,11 +117,12 @@
         <TextView
             android:id="@+id/tv7"
             android:text="그림7"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar7"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -125,11 +131,12 @@
         <TextView
             android:id="@+id/tv8"
             android:text="그림8"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar8"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -138,18 +145,20 @@
         <TextView
             android:id="@+id/tv9"
             android:text="그림9"
-            android:textSize="23sp"
-            android:layout_gravity="center_vertical"/>
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:layout_span="2"/>
         <RatingBar
             android:id="@+id/rbar9"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/btnBack"
             android:text="돌아가기"
-            android:layout_span="2"
-            android:backgroundTint="@color/purple_200"/>
+            android:layout_span="3"
+            android:backgroundTint="@color/purple_200"
+            android:layout_marginTop="20dp"/>
     </TableRow>
 
 </TableLayout>
