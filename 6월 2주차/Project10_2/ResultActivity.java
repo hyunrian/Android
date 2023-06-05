@@ -12,12 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class ResultActivity extends AppCompatActivity {
 
