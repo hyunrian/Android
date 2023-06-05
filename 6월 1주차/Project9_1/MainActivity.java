@@ -22,10 +22,11 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
-    int startX, startY, endX, endY;
+    int startX, startY, endX, endY, radius;
     MyDrawView drawView; // enum 사용
     ShapeType curMode = ShapeType.LINE;
     ColorType curColor = ColorType.RED;
+    Paint paint;
     int userR, userG, userB;
     ArrayList<ShapeDrawing> list = new ArrayList<>();
 
@@ -60,16 +61,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 break;
             case R.id.itemRed:
                 curColor = ColorType.RED;
-                Log.d("mytag","red");
-                Log.d("mytag", curColor+"");
                 break;
             case R.id.itemGreen:
                 curColor = ColorType.GREEN;
-                Log.d("mytag", curColor+"");
                 break;
             case R.id.itemBlue:
                 curColor = ColorType.BLUE;
-                Log.d("mytag", curColor+"");
                 break;
             case R.id.itemUserVal:
                 curColor = ColorType.USERVAL;
@@ -110,6 +107,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawView.invalidate();
                 break;
             case MotionEvent.ACTION_UP:
+                if (curMode == ShapeType.LINE) {
+                    list.add(new ShapeDrawing(startX, startY, endX, endY, paint, curMode, curColor));
+                } else if (curMode == ShapeType.CIRCLE) {
+                    list.add(new ShapeDrawing(startX, startY, radius, paint, curMode, curColor));
+                } else if (curMode == ShapeType.RECT) {
+                    list.add(new ShapeDrawing(startX, startY, endX, endY, paint, curMode, curColor));
+                }
                 break;
         }
         return true;
@@ -125,41 +129,37 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            if (list.size() > 0) {
-                for (int i = 0; i < list.size(); i++) {
-                    ShapeDrawing sd = list.get(i);
-                    if (sd.color == ColorType.RED) {
+            redraw(canvas);
 
-                    } else if (sd.color == ColorType.GREEN) {
-
-                    } else if (sd.color == ColorType.BLUE) {
-
-                    }
-
-                    if (sd.shape == ShapeType.LINE) {
-
-                    } else if (sd.shape == ShapeType.CIRCLE) {
-
-                    } else if (sd.shape == ShapeType.RECT) {
-
-                    }
-                }
-            }
-            Paint paint = new Paint();
+            paint = new Paint();
             setUserColor(curColor, paint);
             if (curMode == ShapeType.LINE) {
                 canvas.drawLine(startX, startY, endX, endY, paint);
-                list.add(new ShapeDrawing(startX, startY, endX, endY, paint, curMode, curColor));
             } else if (curMode == ShapeType.CIRCLE) {
                 // 반지름 구하기 (a^2 + b^2 = c^2)
                 paint.setStyle(Paint.Style.STROKE);
-                int radius = (int)(Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
+                radius = (int)(Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
                 canvas.drawCircle(startX, startY, radius, paint);
-                list.add(new ShapeDrawing(startX, startY, radius, paint, curMode, curColor));
             } else if (curMode == ShapeType.RECT) {
                 paint.setStyle(Paint.Style.STROKE);
                 canvas.drawRect(startX, startY, endX, endY, paint);
-                list.add(new ShapeDrawing(startX, startY, endX, endY, paint, curMode, curColor));
+            }
+        }
+
+        private void redraw(Canvas canvas) { // 전에 그렸던 도형 다시 그리기
+            for (int i = 0; i < list.size(); i++) {
+                ShapeDrawing sd = list.get(i);
+                setUserColor(sd.color, sd.paint);
+                if (sd.shape == ShapeType.LINE) {
+                    canvas.drawLine(sd.startX, sd.startY, sd.endX, sd.endY, sd.paint);
+                } else if (sd.shape == ShapeType.CIRCLE) {
+                    paint.setStyle(Paint.Style.STROKE);
+                    canvas.drawCircle(sd.startX, sd.startY, sd.radius, sd.paint);
+                } else if (sd.shape == ShapeType.RECT) {
+                    paint.setStyle(Paint.Style.STROKE);
+                    canvas.drawRect(sd.startX, sd.startY, sd.endX, sd.endY, sd.paint);
+                }
+//                invalidate();
             }
         }
 
@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         ShapeType shape;
         ColorType color;
         Paint paint;
+
         ShapeDrawing(int startX, int startY, int endX, int endY, Paint paint, ShapeType shape, ColorType color) {
             this.startX = startX;
             this.startY = startY;
