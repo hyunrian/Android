@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
-import java.util.ArrayList;
 
 public class MyDiaryDao {
     MyHelper helper;
@@ -45,7 +44,6 @@ public class MyDiaryDao {
         return true;
     }
 
-
     // 삭제
     public boolean delete(String date) {
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
@@ -63,12 +61,11 @@ public class MyDiaryDao {
         String sql = "select * from tbl_diary where date = '" + date +"'";
         Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
         String text = "";
-        while (cursor.moveToNext()) {
+        while (cursor.moveToNext()) { // while문이 없으면 오류가 발생하는데 가져올 값이 한개여도 꼭 써야하는지?
             text = cursor.getString(1);
         }
         closeAll(null, sqLiteDatabase, cursor);
         return text;
     }
-
 
 }
