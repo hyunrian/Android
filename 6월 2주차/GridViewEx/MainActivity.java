@@ -1,10 +1,14 @@
 package com.kh.gridviewex;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +37,24 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("mytag", list.toString());
         adapter = new MyAdapter(this, R.layout.view_cell, list);
         gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() { // 클릭했을 때 뜰 다이얼로그 설정
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MovieDto dto = list.get(i);
+                int drawable = dto.getDrawable();
+                String title = dto.getTitle();
+
+                View dialogView = View.inflate(MainActivity.this, R.layout.view_dialog, null);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+
+                dialog.setTitle(title);
+                ImageView imageView = dialogView.findViewById(R.id.imageView);
+                imageView.setImageResource(drawable);
+
+                dialog.setView(dialogView);
+                dialog.setPositiveButton("닫기", null);
+                dialog.show();
+            }
+        });
     }
 }
