@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progress="20"
+        android:layout_marginBottom="20dp"
+        android:max="100"/>
+    <Button
+        android:id="@+id/btnInc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10씩 증가"
+        android:backgroundTint="#A9A9AA"/>
+    <Button
+        android:id="@+id/btnDec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10씩 감소"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#A9A9AA"/>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="진행률 : 20 %"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="20"/>
+
+
+</LinearLayout>
